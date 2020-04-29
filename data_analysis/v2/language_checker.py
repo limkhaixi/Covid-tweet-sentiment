@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import pandas as pd
 from googletrans import Translator
 import re
@@ -13,10 +7,6 @@ import tqdm
 
 
 df = pd.read_csv('Italian_quarantena.csv')
-
-
-# In[2]:
-
 
 
 def remove_symbol(x):
@@ -47,9 +37,6 @@ def strip_emoji(text):
     return new_text
 
 
-# In[8]:
-
-
 def translator(x):
     x = strip_emoji(x)
     translator = Translator()
@@ -57,17 +44,9 @@ def translator(x):
     return result.text
 
 
-# In[4]:
-
-
 df['translated'] = ''
 
-
-# In[5]:
-
-
 j = 0
-
 
 for i in tqdm.tqdm(df['id']):
     df['translated'][j] = translator(df['tweet'][j])
@@ -77,31 +56,7 @@ for i in tqdm.tqdm(df['id']):
    
 
 
-# In[7]:
-
-
-
-
-
-# In[27]:
-
-
-
-
-
-# In[12]:
-
-
 df['translated'] = df.apply(lambda x: translator(x['tweet']), axis = 1)
-
-
-# In[11]:
-
-
-
-
-
-# In[ ]:
 
 
 
